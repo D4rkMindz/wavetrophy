@@ -1,0 +1,8 @@
+{
+  "name": "wavetrophy",
+  "app_id": "96f1903f",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
