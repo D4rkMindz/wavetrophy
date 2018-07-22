@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{name: string, phonenumber: string, email?: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -19,19 +19,20 @@ export class ListPage {
     'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.items.push({name: 'Björn Pfoster', phonenumber: '+41764510128', email:'bjoern.pfoster@gmail.com'});
+    this.items.push({name: 'Remo Camenisch', phonenumber: '+41764510129'});
+    this.items.push({name: 'Lorenz Camenisch', phonenumber: '+41764510130'});
+    this.items.push({name: 'Erich Camenisch', phonenumber: '+41764510131'});
+    // for (let i = 1; i < 11; i++) {
+    //   this.items.push({
+    //     title: 'Item ' + i,
+    //     note: 'This is item #' + i,
+    //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+    //   });
+    // }
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
+
   }
 }
