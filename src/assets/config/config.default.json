@@ -1,0 +1,5 @@
+{
+  "info": "The configuration can only be key => value. To create configuration groups, you need to create keys like 'group1.language.test.de' ",
+  "language":"de",
+  "test": "penis"
+}
