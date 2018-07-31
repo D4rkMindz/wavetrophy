@@ -3,16 +3,43 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Start</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <h3>Stream</h3>
+  <ion-card *ngFor="let location of locations">
+    <div *ngIf="location.image">
+      <img src="{{location.image}}"/>
+    </div>
+    <ion-card-content>
+      <ion-card-title>
+        {{location.title}}
+      </ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let event of location.events">
+          <h5>
+            {{event.date.format('HH')}}:{{event.date.format('mm')}} Uhr {{event.name}}
+          </h5>
+          <div *ngIf="event.description">
+            <p>{{event.description}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+      <br>
+      <h2>Adresse</h2>
+      <p>{{location.address.text.street}}</p>
+      <p>{{location.address.text.zip}} {{location.address.text.city}}</p>
+      <br>
+      <h3>Koordinaten</h3>
+      <p>latitude/longitude: {{location.address.lat}}/{{location.address.lon}}</p>
+      <br>
+      <a href="{{location.url}}">
+        <button ion-button block>
+          Bring mich dort hin
+        </button>
+      </a>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
