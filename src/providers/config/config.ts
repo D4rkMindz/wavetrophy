@@ -15,6 +15,7 @@ export class ConfigProvider {
    * @param {Storage} storage
    */
   constructor(private http: HttpProvider, private storage: Storage) {
+    this._config = [];
   }
 
   /**
@@ -36,6 +37,7 @@ export class ConfigProvider {
       this.storage.set('meta.config.has_been_loaded', true);
     } else {
       // load configuration from storage
+      // TODO continue here. The storage is not setting correctly (maybe flush it that it could rebuild it correctly?). However, the config storage needs to be loaded correctly!
       this._config = await this.storage.get('config');
     }
   }
