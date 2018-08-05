@@ -8,6 +8,7 @@ import {HttpProvider} from "../../providers/http/http";
 })
 export class ListPage {
   contacts: Array<{ name: string, position: string, phonenumber: string, email?: string }>;
+  _full_contacts: Array<{ name: string, position: string, phonenumber: string, email?: string }>;
 
   /**
    * ListPage constructor
@@ -20,6 +21,18 @@ export class ListPage {
     // TODO Contacts show placeholder image while loading images
   }
 
+  search(event: any) {
+    this.contacts = this._full_contacts;
+    const searchQuery = event.target.value;
+    if (searchQuery && searchQuery.trim() !== '') {
+      this.contacts = this.contacts.filter((contact) => {
+        const foundByName = contact.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
+        const foundByPosition = contact.position.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
+        return foundByName || foundByPosition;
+      })
+    }
+  }
+
   /**
    * Load contacts from JSON-Data
    *
@@ -28,5 +41,6 @@ export class ListPage {
   private async loadContacts() {
     const data: any = await this.http.get('assets/json/testdata.json');
     this.contacts = data.contacts;
+    this._full_contacts = data.contacts;
   }
 }

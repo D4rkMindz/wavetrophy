@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {MenuController, NavController} from 'ionic-angular';
 import * as moment from "moment";
 import {HttpProvider} from "../../providers/http/http";
 
@@ -17,9 +17,11 @@ export class HomePage {
    *
    * @param navCtrl
    * @param http
+   * @param menuCtrl
    */
-  constructor(public navCtrl: NavController, private http: HttpProvider) {
+  constructor(public navCtrl: NavController, private http: HttpProvider, private menuCtrl: MenuController) {
     this.loadLocations();
+    this.menuCtrl.enable(true, 'main-menu');
     // TODO Stream load images with caching
     // TODO Stream show placeholder image while loading images
   }

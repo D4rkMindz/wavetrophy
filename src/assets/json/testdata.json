@@ -88,13 +88,13 @@
   "contacts": [
     {
       "name": "Björn Pfoster",
-      "position": "Group Leader 3",
+      "position": "Group Leader 1",
       "phonenumber": "+41764510128",
       "email": "bjoern.pfoster@gmail.com"
     },
     {
       "name": "Remo Camenisch",
-      "position": "Group Leader 3",
+      "position": "Group Leader 2",
       "phonenumber": "+41764510129"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "name": "Erich Camenisch",
-      "position": "Group Leader 3",
+      "position": "Group Leader 4",
       "phonenumber": "+41764510131"
     }
   ]
