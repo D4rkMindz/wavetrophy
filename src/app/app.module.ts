@@ -1,15 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import { WavetrophyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {WavetrophyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
+import {ListPage} from '../pages/list/list';
+import {LoginPage} from "../pages/login/login";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { ConfigProvider } from '../providers/config/config';
-import { HttpProvider } from '../providers/http/http';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {ConfigProvider} from '../providers/config/config';
+import {HttpProvider} from '../providers/http/http';
 import {IonicStorageModule} from "@ionic/storage";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -17,7 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
     WavetrophyApp,
     HomePage,
-    ListPage
+    ListPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {HttpClientModule} from "@angular/common/http";
   entryComponents: [
     WavetrophyApp,
     HomePage,
-    ListPage
+    ListPage,
+    LoginPage,
   ],
   providers: [
     HttpProvider,
@@ -48,7 +51,8 @@ import {HttpClientModule} from "@angular/common/http";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
 
 function configServiceFactory(config: ConfigProvider) {
   return () => config.loadConfig();
