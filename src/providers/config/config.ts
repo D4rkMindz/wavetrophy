@@ -78,7 +78,7 @@ export class ConfigProvider {
   }
 
   /**
-   * Save all items to the storage
+   * Save all contacts to the storage
    *
    * This method needs to be called to persist all changed configurations. This method should be called before leaving
    * the app and after saving some settings.

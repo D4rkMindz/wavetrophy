@@ -13,15 +13,15 @@ export class HomePage {
   information: any;
 
   /**
-   * HomePage Constructor.
+   * HomePage constructor
    *
    * @param navCtrl
    * @param http
    */
   constructor(public navCtrl: NavController, private http: HttpProvider) {
     this.loadLocations();
-    // TODO load images with caching
-    // TODO show placeholder image while loading images
+    // TODO Stream load images with caching
+    // TODO Stream show placeholder image while loading images
   }
 
   /**
