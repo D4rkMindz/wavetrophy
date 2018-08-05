@@ -22,10 +22,6 @@ export class HomePage {
     this.loadLocations();
   }
 
-  toggleSection(i) {
-    this.information[i].open = !this.information[i].open;
-  }
-
   /**
    * Load locations from JSON-Data
    *
