@@ -33,11 +33,13 @@ export class ConfigProvider {
         this._config[key] = config[key];
       }
 
+      // Save configuration
+      this.storage.set('config', this._config);
+
       // Set meta key that config was saved
       this.storage.set('meta.config.has_been_loaded', true);
     } else {
-      // load configuration from storage
-      // TODO continue here. The storage is not setting correctly (maybe flush it that it could rebuild it correctly?). However, the config storage needs to be loaded correctly!
+      // Load configuration from storage
       this._config = await this.storage.get('config');
     }
   }
