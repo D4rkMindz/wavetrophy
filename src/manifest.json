@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "WAVETROPHY App",
+  "short_name": "WAVE",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
