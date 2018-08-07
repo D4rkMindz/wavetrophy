@@ -89,23 +89,23 @@
     {
       "name": "Björn Pfoster",
       "position": "Group Leader 1",
-      "phonenumber": "+41764510128",
+      "phonenumber": "+41790123456",
       "email": "bjoern.pfoster@gmail.com"
     },
     {
-      "name": "Remo Camenisch",
+      "name": "Remo Mustermann",
       "position": "Group Leader 2",
-      "phonenumber": "+41764510129"
+      "phonenumber": "+41790134567"
     },
     {
-      "name": "Lorenz Camenisch",
+      "name": "Lorenz Tester",
       "position": "Group Leader 3",
-      "phonenumber": "+41764510130"
+      "phonenumber": "+41791235678"
     },
     {
-      "name": "Erich Camenisch",
+      "name": "John Doe",
       "position": "Group Leader 4",
-      "phonenumber": "+41764510131"
+      "phonenumber": "+41767891234"
     }
   ]
 }

@@ -54,6 +54,6 @@ import {HttpClientModule} from "@angular/common/http";
 export class AppModule {
 }
 
-function configServiceFactory(config: ConfigProvider) {
+export function configServiceFactory(config: ConfigProvider) {
   return () => config.loadConfig();
 }
