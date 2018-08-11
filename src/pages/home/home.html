@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <h3>Stream</h3>
-  <ion-card *ngFor="let location of locations">
+  <ion-card *ngFor="let location of locations" id="{{location.id}}">
     <div *ngIf="location.image">
       <img src="{{location.image}}"/>
     </div>
@@ -40,6 +40,15 @@
           Bring mich dort hin
         </button>
       </a>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        <h1>Danke für die Teilnahme</h1>
+      </ion-card-title>
+      <p>Wir hoffen, dass dir die WAVETROHPY gefallen hat.</p>
+      <p>Bis zum nächsten Mal</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -62,3 +62,10 @@ $ apksigner verify Wavetrophy.apk
 ```
 
 All done. Now you can upload the APK to the playstore.
+
+### Commands
+
+Debugging:
+```
+$ ionic cordova run android -l --target=f70a8979
+```

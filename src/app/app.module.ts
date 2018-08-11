@@ -13,6 +13,10 @@ import {ConfigProvider} from '../providers/config/config';
 import {HttpProvider} from '../providers/http/http';
 import {IonicStorageModule} from "@ionic/storage";
 import {HttpClientModule} from "@angular/common/http";
+import {BackgroundMode} from "@ionic-native/background-mode";
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocationProvider } from '../providers/location/location';
+import {CacheModule, CacheService} from "ionic-cache";
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import {HttpClientModule} from "@angular/common/http";
     IonicStorageModule.forRoot({
       name: '__wavetrophy',
       driverOrder: ['indexeddb']
-    })
+    }),
+    CacheModule.forRoot({
+      keyPrefix: '__httpcache'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,6 +49,8 @@ import {HttpClientModule} from "@angular/common/http";
     ConfigProvider,
     StatusBar,
     SplashScreen,
+    BackgroundMode,
+    LocalNotifications,
     {
       provide: APP_INITIALIZER,
       useFactory: configServiceFactory,
@@ -49,6 +58,7 @@ import {HttpClientModule} from "@angular/common/http";
       multi: true,
     },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationProvider,
   ]
 })
 export class AppModule {

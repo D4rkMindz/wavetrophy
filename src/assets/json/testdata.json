@@ -1,11 +1,11 @@
 {
   "locations": [
     {
-      "id": "1",
+      "hash": "winti",
       "name": "Winterthur",
-      "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.676881",
       "image": "assets/imgs/placeholder.png",
       "address": {
+        "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.676881",
         "lat": "47.500412",
         "lon": "8.676881",
         "text": {
@@ -17,33 +17,33 @@
       },
       "events": [
         {
-          "id": "1",
-          "date": "2018-09-06 11:00:00",
+          "hash": "winti-1",
+          "date": "2018-08-11 11:00:00",
           "name": "Ankunft",
           "description": ""
         },
         {
-          "id": 2,
-          "date": "2018-09-06 11:15:00",
+          "hash": "winti-2 ",
+          "date": "2018-08-11 11:15:00",
           "name": "Führung",
           "description": "Eine Führung durch Winterthur"
         },
         {
-          "id": 3,
-          "date": "2018-09-06 12:00:00",
+          "hash": "winti-3",
+          "date": "2018-08-11 12:00:00",
           "name": "Essen",
           "description": "Das Mittagessen für alle Fahrer der Wave"
         },
         {
-          "id": 4,
-          "date": "2018-09-06 13:00:00",
+          "hash": "winti-4",
+          "date": "2018-08-10 23:39:00",
           "name": "Abfahrt",
           "description": ""
         }
       ]
     },
     {
-      "id": 2,
+      "hash": "winti-2",
       "name": "Winterthur",
       "image": "assets/imgs/placeholder.png",
       "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.721401",
@@ -59,26 +59,26 @@
       },
       "events": [
         {
-          "id": 1,
-          "date": "2018-09-06 11:00:00",
+          "hash": "winti-2-1",
+          "date": "2018-08-11 11:00:00",
           "name": "Ankunft",
           "description": ""
         },
         {
-          "id": 2,
-          "date": "2018-09-06 11:15:00",
+          "hash": "winti-2-2",
+          "date": "2018-08-11 11:15:00",
           "name": "Führung",
           "description": "Eine Führung durch Winterthur"
         },
         {
-          "id": 3,
-          "date": "2018-09-06 12:00:00",
+          "hash": "winti-2-3",
+          "date": "2018-08-11 12:00:00",
           "name": "Essen",
           "description": "Das Mittagessen für alle Fahrer der Wave"
         },
         {
-          "id": 4,
-          "date": "2018-09-06 13:00:00",
+          "hash": "winti-2-4",
+          "date": "2018-08-12 23:40:00",
           "name": "Abfahrt",
           "description": ""
         }

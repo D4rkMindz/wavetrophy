@@ -50,8 +50,9 @@ export class ConfigProvider {
    * @returns {Promise<boolean>}
    */
   private async hasConfigBeenLoadedBefore() {
-    const hasBeenLoaded = await this.storage.get('meta.config.has_been_loaded');
-    return !!hasBeenLoaded;
+    // const hasBeenLoaded = await this.storage.get('meta.config.has_been_loaded');
+    // return !!hasBeenLoaded;
+    return false
   }
 
   /**

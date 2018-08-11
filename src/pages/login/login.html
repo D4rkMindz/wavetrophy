@@ -1,21 +1,23 @@
 <ion-content padding class="content">
 
   <p>Bitte wählen Sie Ihre Gruppennummer aus</p>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Gruppennummer</ion-label>
-      <ion-select [(ngModel)]="groupnumber" cancelText="Abbrechen" okText="OK">
-        <ion-option value="1">Gruppe 1 (E-Cars)</ion-option>
-        <ion-option value="2">Gruppe 2 (Tesla)</ion-option>
-        <ion-option value="3">Gruppe 3 (Bikes)</ion-option>
-        <ion-option value="4">Gruppe 4 (Chillex)</ion-option>
-        <ion-option value="5">Gruppe 5 (School)</ion-option>
-        <ion-option value="6">Gruppe 6 (Divers)</ion-option>
-        <ion-option value="7">Gruppe 7 (Premium)</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Gruppennummer</ion-label>
+        <ion-select formControlName="groupNumber" cancelText="Abbrechen" okText="OK">
+          <ion-option value="1">Gruppe 1 (E-Cars)</ion-option>
+          <ion-option value="2">Gruppe 2 (Tesla)</ion-option>
+          <ion-option value="3">Gruppe 3 (Bikes)</ion-option>
+          <ion-option value="4">Gruppe 4 (Chillex)</ion-option>
+          <ion-option value="5">Gruppe 5 (School)</ion-option>
+          <ion-option value="6">Gruppe 6 (Divers)</ion-option>
+          <ion-option value="7">Gruppe 7 (Premium)</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="!loginForm.valid">Los</button>
+  </form>
 
-  <button ion-button block (click)="login()">Los</button>
 
 </ion-content>

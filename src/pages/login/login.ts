@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Storage} from "@ionic/storage";
-import {MenuController, NavController, NavParams} from 'ionic-angular';
+import {MenuController, NavController} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {FormBuilder, Validators} from "@angular/forms";
 
 /**
  * Generated class for the LoginPage page.
@@ -16,14 +17,23 @@ import {HomePage} from "../home/home";
 })
 export class LoginPage {
 
+  loginForm;
   groupnumber;
 
-  constructor(public navCtrl: NavController, private menuCtrl: MenuController, private storage: Storage) {
+  constructor(public navCtrl: NavController,
+              private menuCtrl: MenuController,
+              private formBuilder: FormBuilder,
+              private storage: Storage
+  ) {
     this.menuCtrl.enable(false, 'main-menu');
+    this.loginForm = this.formBuilder.group({
+      groupNumber: ['', Validators.required]
+    });
   }
 
   login() {
-    this.storage.set('user.groupnumber', this.groupnumber);
+    console.log(this.loginForm.controls.groupNumber.value);
+    this.storage.set('user.groupnumber', this.loginForm.controls.groupNumber.value);
     this.storage.set('meta.user.is_logged_in', true);
     this.menuCtrl.enable(true, 'main-menu');
     this.navCtrl.setRoot(HomePage);
