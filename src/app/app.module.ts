@@ -14,9 +14,12 @@ import {HttpProvider} from '../providers/http/http';
 import {IonicStorageModule} from "@ionic/storage";
 import {HttpClientModule} from "@angular/common/http";
 import {BackgroundMode} from "@ionic-native/background-mode";
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { LocationProvider } from '../providers/location/location';
-import {CacheModule, CacheService} from "ionic-cache";
+import {LocalNotifications} from '@ionic-native/local-notifications';
+import {LocationProvider} from '../providers/location/location';
+import {CacheModule} from "ionic-cache";
+import {PopoverProvider} from '../providers/popover/popover';
+import {SettingsPage} from "../pages/settings/settings";
+import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import {CacheModule, CacheService} from "ionic-cache";
     HomePage,
     ListPage,
     LoginPage,
+    SettingsPage,
+    PopoverDefaultPage,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import {CacheModule, CacheService} from "ionic-cache";
     IonicModule.forRoot(WavetrophyApp),
     IonicStorageModule.forRoot({
       name: '__wavetrophy',
-      driverOrder: ['indexeddb']
+      driverOrder: ['indexeddb'],
+      storeName: '_main'
     }),
     CacheModule.forRoot({
       keyPrefix: '__httpcache'
@@ -43,6 +49,8 @@ import {CacheModule, CacheService} from "ionic-cache";
     HomePage,
     ListPage,
     LoginPage,
+    SettingsPage,
+    PopoverDefaultPage,
   ],
   providers: [
     HttpProvider,
@@ -59,6 +67,7 @@ import {CacheModule, CacheService} from "ionic-cache";
     },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationProvider,
+    PopoverProvider,
   ]
 })
 export class AppModule {

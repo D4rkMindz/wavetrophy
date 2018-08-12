@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import {HttpClient} from "@angular/common/http";
 import {Refresher} from "ionic-angular";
 import {CacheService} from "ionic-cache";
+import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
 
 @Injectable()
 export class HttpProvider {
@@ -19,7 +20,7 @@ export class HttpProvider {
    * @param {Refresher} refresher
    * @returns {Promise<any>}
    */
-  public async get(url, groupKey = 'default', ttl = (60 * 60 * 24 * 20), refresher?: Refresher) {
+  public async get(url, groupKey = HTTP_CACHE_GROUP_KEY, ttl = HTTP_CACHE_TTL, refresher?: Refresher) {
     let key = url;
     let request = this.http.get(url).map((res: Response) => {
       return res;

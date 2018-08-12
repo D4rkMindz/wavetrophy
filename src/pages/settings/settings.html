@@ -1,0 +1,39 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Einstellungen</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3>Benachrichtigungen</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label>Benachrichtigungen Aktiv</ion-label>
+      <ion-toggle [(ngModel)]="notificationsActive"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Benachrichtigung vor Abfahrt</ion-label>
+      <ion-select  [disabled]="!notificationsActive" (ionChange)="onNotificationAheadChange($event)">
+        <ion-option *ngFor="let number of notificationsAheadOptions" value="{{number}}" [selected]="number === notificationsAhead">{{number}} Minuten</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <h3>Account</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label>Gruppe</ion-label>
+      <ion-select>
+
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

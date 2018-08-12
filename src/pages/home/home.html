@@ -4,11 +4,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Start</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentDefaultPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Stream</h3>
+  <ion-refresher (ionRefresh)="refreshLocations($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let location of locations" id="{{location.id}}">
     <div *ngIf="location.image">
       <img src="{{location.image}}"/>
@@ -19,9 +26,9 @@
       </ion-card-title>
       <ion-list>
         <ion-item *ngFor="let event of location.events">
-          <h5>
+          <h4 style="margin-top: 0.3em;">
             {{event.date.format('HH')}}:{{event.date.format('mm')}} Uhr {{event.name}}
-          </h5>
+          </h4>
           <div *ngIf="event.description">
             <p>{{event.description}}</p>
           </div>
@@ -35,7 +42,7 @@
       <h3>Koordinaten</h3>
       <p>latitude/longitude: {{location.address.lat}}/{{location.address.lon}}</p>
       <br>
-      <a href="{{location.url}}">
+      <a href="{{location.address.url}}">
         <button ion-button block>
           Bring mich dort hin
         </button>

@@ -4,6 +4,7 @@
       "hash": "winti",
       "name": "Winterthur",
       "image": "assets/imgs/placeholder.png",
+      "title": "Winterthur Autohaus",
       "address": {
         "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.676881",
         "lat": "47.500412",
@@ -36,7 +37,7 @@
         },
         {
           "hash": "winti-4",
-          "date": "2018-08-10 23:39:00",
+          "date": "2018-08-15 23:39:00",
           "name": "Abfahrt",
           "description": ""
         }
@@ -46,8 +47,9 @@
       "hash": "winti-2",
       "name": "Winterthur",
       "image": "assets/imgs/placeholder.png",
-      "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.721401",
+      "title": "Winterthur Technorama",
       "address": {
+        "url": "https://maps.google.com/?daddr=47.388789,8.676881+to:47.500412,8.721401",
         "lat": "47.500412",
         "lon": "8.676881",
         "text": {
@@ -78,7 +80,7 @@
         },
         {
           "hash": "winti-2-4",
-          "date": "2018-08-12 23:40:00",
+          "date": "2018-08-15 23:40:00",
           "name": "Abfahrt",
           "description": ""
         }

@@ -67,5 +67,5 @@ All done. Now you can upload the APK to the playstore.
 
 Debugging:
 ```
-$ ionic cordova run android -l --target=f70a8979
+$ ionic cordova run android -l --target=f70a8979 --address=192.168.1.102
 ```

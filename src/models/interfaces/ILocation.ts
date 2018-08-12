@@ -18,6 +18,11 @@ export interface ILocation {
   image: string;
 
   /**
+   * The title of the location
+   */
+  title: string;
+
+  /**
    * The address of the location
    */
   address: IAddress;

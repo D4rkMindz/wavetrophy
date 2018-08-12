@@ -9,6 +9,7 @@ import {ListPage} from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {BackgroundMode} from "@ionic-native/background-mode";
 import {CacheService} from "ionic-cache";
+import {HTTP_CACHE_TTL} from "../providers/config/constants";
 
 @Component({
   templateUrl: 'app.html'
@@ -45,10 +46,12 @@ export class WavetrophyApp {
     this.enableBackgroundMode();
 
     const isLoggedIn = await this.storage.get('meta.user.is_logged_in');
+    console.log('isLoggedIn:', isLoggedIn);
     if (!!isLoggedIn) {
       await this.nav.setRoot(HomePage);
     }
-    this.cache.setDefaultTTL(60 * 60 * 24 * 20); // 20 Days TODO adjust for the maximum time of a wave-trophy
+    this.cache.setDefaultTTL(HTTP_CACHE_TTL); // 20 Days TODO adjust for the maximum time of a wave-trophy
+    // TODO continue in pages/settings/settings.ts
     this.cache.setOfflineInvalidate(false);
 
     this.splashScreen.hide();

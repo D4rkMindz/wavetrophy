@@ -5,6 +5,8 @@ import {WaveEvent} from "../../models/WaveEvent";
 import {Location} from "../../models/Location";
 import * as moment from "moment";
 import {Address} from "../../models/Address";
+import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
+import {Refresher} from "ionic-angular";
 
 @Injectable()
 export class LocationProvider {
@@ -24,12 +26,22 @@ export class LocationProvider {
   }
 
   /**
+   * Force reload locations
+   * @param {Refresher} refresher
+   * @returns {Promise<void>}
+   */
+  public async forceGetLocations(refresher: Refresher) {
+    await this.loadLocations(refresher);
+    return this._locations
+  }
+
+  /**
    * Load locations from server.
    * @returns {Promise<boolean>}
    */
-  private async loadLocations() {
+  private async loadLocations(refresher?: Refresher) {
     try {
-      this._locationsJSON = await this.http.get('assets/json/testdata.json');
+      this._locationsJSON = await this.http.get('assets/json/testdata.json',HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL, refresher);
       this._locations = this.parseLocations(this._locationsJSON['locations']);
     } catch (e) {
       return false;
@@ -50,9 +62,10 @@ export class LocationProvider {
       const hash = location.hash;
       const name = location.name;
       const image = location.image;
+      const title = location.title;
       const address = this.parseAddress(location.address);
       const events = this.parseEvents(location.events);
-      locations.push(new Location(hash, name, image, address, events));
+      locations.push(new Location(hash, name, image, title, address, events));
     });
     return locations;
   }

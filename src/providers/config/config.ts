@@ -29,6 +29,7 @@ export class ConfigProvider {
       // Load and save configuration
       const config = await this.http.get('assets/config/config.default.json');
 
+      this._config = [];
       for (let key in config) {
         this._config[key] = config[key];
       }
@@ -50,9 +51,8 @@ export class ConfigProvider {
    * @returns {Promise<boolean>}
    */
   private async hasConfigBeenLoadedBefore() {
-    // const hasBeenLoaded = await this.storage.get('meta.config.has_been_loaded');
-    // return !!hasBeenLoaded;
-    return false
+    const hasBeenLoaded = await this.storage.get('meta.config.has_been_loaded');
+    return !!hasBeenLoaded;
   }
 
   /**
