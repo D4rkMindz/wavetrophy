@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient} from "@angular/common/http";
-import {Refresher} from "ionic-angular";
+import {Refresher, ToastController} from "ionic-angular";
 import {CacheService} from "ionic-cache";
 import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
 
@@ -9,7 +9,8 @@ import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
 export class HttpProvider {
 
   constructor(private http: HttpClient,
-              private cache: CacheService) {
+              private cache: CacheService,
+              public toastCtrl: ToastController) {
   }
 
   /**
@@ -23,9 +24,13 @@ export class HttpProvider {
   public async get(url, groupKey = HTTP_CACHE_GROUP_KEY, ttl = HTTP_CACHE_TTL, refresher?: Refresher) {
     let key = url;
     let request = this.http.get(url).map((res: Response) => {
+      let toast = this.toastCtrl.create({
+        message: 'Daten vom Server geladen',
+        duration: 1000,
+      });
+      toast.present();
       return res;
     });
-    this.cache.clearAll();
     let data;
     if (refresher) {
       let delayType = 'all';

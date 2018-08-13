@@ -39,7 +39,7 @@ export class ListPage {
    * @todo Replace the asset URL with the URL on the Server.
    */
   private async loadContacts() {
-    const data: any = await this.http.get('assets/json/testdata.json');
+    const data: any = await this.http.get('https://darkmindz.ch/assets/testdata.json');
     this.contacts = data.contacts;
     this._full_contacts = data.contacts;
   }
