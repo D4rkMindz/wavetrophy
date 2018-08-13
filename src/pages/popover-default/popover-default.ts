@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
 import {SettingsPage} from "../settings/settings";
+import {FaqPage} from "../faq/faq";
+import {AboutPage} from "../about/about";
 
 /**
  * Generated class for the PopoverSettingsPage page.
@@ -31,12 +33,12 @@ export class PopoverDefaultPage {
   }
 
   async openAbout() {
+    this.navCtrl.push(AboutPage);
     await this.viewCtrl.dismiss();
-    // TODO create about page
   }
 
   async openFAQ() {
+    this.navCtrl.push(FaqPage);
     await this.viewCtrl.dismiss();
-    // TODO create FAQ page
   }
 }

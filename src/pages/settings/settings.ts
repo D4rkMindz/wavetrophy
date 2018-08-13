@@ -26,18 +26,19 @@ export class SettingsPage {
     this.notificationsAhead = <number>selectedValue;
   }
 
-  ionViewWillEnter() {
-    console.log('onEnter. Reading...');
+  ionViewDidLoad() {
     this.notificationsActive = this.config.get('notifications.active');
     this.notificationsAhead = this.config.get('notifications.ahead');
+    console.log('onEnter. Reading...', this.notificationsAhead);
   }
 
-  ionViewWillLeave() {
+  ionViewWillUnload() {
     console.log('onLeave. Saving...');
     this.config.set('notifications.active', this.notificationsActive);
     console.log('notifications.ahead', this.notificationsAhead);
     // TODO continue here by loading notifications ahead properly
     this.config.set('notifications.ahead', this.notificationsAhead);
+    console.log('config.notifications.ahead', this.config.get('notifications.ahead'));
     this.config.saveAll();
   }
 }

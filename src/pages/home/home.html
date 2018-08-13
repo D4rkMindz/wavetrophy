@@ -13,9 +13,6 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="refreshLocations($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   <ion-card *ngFor="let location of locations" id="{{location.id}}">
     <div *ngIf="location.image">
       <img src="{{location.image}}"/>

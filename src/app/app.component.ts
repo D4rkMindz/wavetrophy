@@ -51,7 +51,6 @@ export class WavetrophyApp {
       await this.nav.setRoot(HomePage);
     }
     this.cache.setDefaultTTL(HTTP_CACHE_TTL); // 20 Days TODO adjust for the maximum time of a wave-trophy
-    // TODO continue in pages/settings/settings.ts
     this.cache.setOfflineInvalidate(false);
 
     this.splashScreen.hide();

@@ -1,0 +1,9 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'page-faq',
+  templateUrl: 'faq.html',
+})
+export class FaqPage {
+  ionViewDidLoad() {console.log("FaqPage")}
+}

@@ -22,18 +22,23 @@
     </ion-item>
     <ion-item>
       <ion-label>Benachrichtigung vor Abfahrt</ion-label>
-      <ion-select  [disabled]="!notificationsActive" (ionChange)="onNotificationAheadChange($event)">
+      <ion-select [(ngModel)]="notificationsAhead" [disabled]="!notificationsActive" (ionChange)="onNotificationAheadChange($event)">
         <ion-option *ngFor="let number of notificationsAheadOptions" value="{{number}}" [selected]="number === notificationsAhead">{{number}} Minuten</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
   <h3>Account</h3>
-  <ion-list>
-    <ion-item>
-      <ion-label>Gruppe</ion-label>
-      <ion-select>
-
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <p>Coming soon</p>
+  <!--<ion-list>-->
+    <!--<ion-item>-->
+      <!--<ion-label>Gruppe</ion-label>-->
+      <!--<ion-select>-->
+        <!--&lt;!&ndash; TODO LOAD GROUPS FROM SERVER INTO MODEL &ndash;&gt;-->
+      <!--</ion-select>-->
+    <!--</ion-item>-->
+  <!--</ion-list>-->
+  <h3>Downloads</h3>
+  <p>Coming soon</p>
+  <!-- TODO Individualize loading -->
+  <!-- TODO Make reload of data possible -->
 </ion-content>

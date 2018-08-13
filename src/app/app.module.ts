@@ -20,6 +20,8 @@ import {CacheModule} from "ionic-cache";
 import {PopoverProvider} from '../providers/popover/popover';
 import {SettingsPage} from "../pages/settings/settings";
 import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
+import {FaqPage} from "../pages/faq/faq";
+import {AboutPage} from "../pages/about/about";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
     LoginPage,
     SettingsPage,
     PopoverDefaultPage,
+    FaqPage,
+    AboutPage,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
     LoginPage,
     SettingsPage,
     PopoverDefaultPage,
+    FaqPage,
+    AboutPage,
   ],
   providers: [
     HttpProvider,
