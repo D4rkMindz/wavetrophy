@@ -3,7 +3,7 @@
     <name>WAVETROPHY</name>
     <description>The official App for the WAVETROPHY.</description>
     <author email="bjoern.pfoster@gmail.com" href="https://darkmindz.ch">Björn Pfoster</author>
-    <content original-src="index.html" src="http://192.168.1.102:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
