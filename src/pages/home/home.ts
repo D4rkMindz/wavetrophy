@@ -13,7 +13,7 @@ import {NotificationProvider} from "../../providers/notification/notification";
 })
 export class HomePage {
 
-  locations: any;
+  locations: ILocation[];
   information: any;
 
   /**
@@ -46,6 +46,7 @@ export class HomePage {
 
   async ionViewWillEnter() {
     await this.loadLocations();
+    console.log('Image URL: ', this.locations[0].images[0].url)
   }
 
   /**

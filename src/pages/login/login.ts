@@ -47,7 +47,7 @@ export class LoginPage {
 
   login() {
     console.log(this.loginForm.controls.groupNumber.value);
-    this.config.set('user.groupnumber', this.loginForm.controls.groupNumber.value);
+    this.config.set('group.hash', this.loginForm.controls.groupNumber.value);
     this.config.saveAll();
     this.storage.set('meta.user.is_logged_in', true);
     this.menuCtrl.enable(true, 'main-menu');

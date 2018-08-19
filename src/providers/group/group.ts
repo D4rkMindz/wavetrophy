@@ -15,7 +15,7 @@ import {Group} from "../../models/Group";
 @Injectable()
 export class GroupProvider {
 
-  private _groups: IGroup[];
+  private _groups: IGroup[] = [];
   private _groupsJSON: any;
 
   /**

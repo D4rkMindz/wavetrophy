@@ -14,8 +14,8 @@
 
 <ion-content padding>
   <ion-card *ngFor="let location of locations" id="{{location.hash}}">
-    <div *ngIf="location.image">
-      <img src="{{location.image[0].url}}"/>
+    <div *ngIf="location.images">
+      <lazy-img src="{{location.images[0].url}}"></lazy-img>
     </div>
     <ion-card-content>
       <ion-card-title>

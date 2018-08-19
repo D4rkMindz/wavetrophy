@@ -10,6 +10,7 @@ import {ListPage} from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {BackgroundMode} from "@ionic-native/background-mode";
 import {HTTP_CACHE_TTL} from "../providers/config/constants";
+import ImgCache from 'imgcache.js';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,6 +40,8 @@ export class WavetrophyApp {
 
   async initializeApp() {
     await this.platform.ready();
+
+    await ImgCache.init();
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.statusBar.styleDefault();

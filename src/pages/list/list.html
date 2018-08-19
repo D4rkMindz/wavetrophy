@@ -9,18 +9,29 @@
 
 <ion-content>
   <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
-  <ion-list>
-    <button ion-item *ngFor="let contact of contacts">
+  <ion-list *ngIf="contacts">
+    <button ion-item *ngFor="let contact of contacts" (click)="call(contact.phonenumber)" >
+
       <ion-avatar item-start>
         <img src="assets/imgs/avatar_icon.png">
       </ion-avatar>
-      <h3>{{contact.name}}</h3>
+
+      <h3>{{contact.first_name}} {{contact.last_name}}</h3>
       <p>{{contact.position}}</p>
+
       <div class="item-note" item-end>
-        <a href="tel:{{contact.phonenumber}}">
           <button ion-button>Anrufen</button>
-        </a>
       </div>
+
     </button>
   </ion-list>
+  <ion-card *ngIf="!contacts">
+    <ion-card-content>
+      <ion-card-title>
+        <h1>Fehlende Internetverbindung</h1>
+        <p>Bitte verbinden Sie sich einmal mit dem Internet um die Applikation nutzen zu können.</p>
+        <p>Falls Sie die Daten aktualisieren wollen, können Sie sich ebenfalls wieder mit dem Internet verbinden</p>
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

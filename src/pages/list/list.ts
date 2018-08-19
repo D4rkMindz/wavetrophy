@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {HttpProvider} from "../../providers/http/http";
+import {ConfigProvider} from "../../providers/config/config";
 
 @Component({
   selector: 'page-list',
@@ -14,8 +15,11 @@ export class ListPage {
    * ListPage constructor
    * @param navCtrl
    * @param http
+   * @param config
    */
-  constructor(public navCtrl: NavController, private http: HttpProvider) {
+  constructor(private navCtrl: NavController,
+              private http: HttpProvider,
+              private config: ConfigProvider) {
     this.loadContacts();
     // TODO Contacts load images with caching
     // TODO Contacts show placeholder images while loading images
@@ -29,8 +33,16 @@ export class ListPage {
         const foundByName = contact.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
         const foundByPosition = contact.position.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
         return foundByName || foundByPosition;
-      })
+      });
     }
+  }
+
+  /**
+   * Call a contact
+   * @param {string} number
+   */
+  call(number: string) {
+    document.location.href = `tel:${number}`;
   }
 
   /**
@@ -39,7 +51,9 @@ export class ListPage {
    * @todo Replace the asset URL with the URL on the Server.
    */
   private async loadContacts() {
-    const data: any = await this.http.get('https://darkmindz.ch/assets/testdata.json');
+    const wavetrophyHash = this.config.get('wavetrophy.hash');
+    const url = `https://api.wavetrophy.d4rkmindz.ch/v1/trophies/${wavetrophyHash}/contacts`;
+    const data: any = await this.http.get(url);
     this.contacts = data.contacts;
     this._full_contacts = data.contacts;
   }

@@ -27,9 +27,6 @@ export class LocationProvider {
    * Get locations
    */
   public async getLocations() {
-    if (this._locations.length > 0) {
-      return this._locations;
-    }
     await this.loadLocations();
     return this._locations;
   }
@@ -86,8 +83,8 @@ export class LocationProvider {
    */
   private parseImages(images: any[]): ImageURL[] {
     let imgs = [];
-    images.forEach((url: string) => {
-      imgs.push(new ImageURL(url))
+    images.forEach((image: any) => {
+      imgs.push(new ImageURL(image.url))
     });
     return imgs;
   }

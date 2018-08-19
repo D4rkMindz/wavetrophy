@@ -23,7 +23,11 @@ import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
 import {FaqPage} from "../pages/faq/faq";
 import {AboutPage} from "../pages/about/about";
 import {NotificationProvider} from '../providers/notification/notification';
-import { GroupProvider } from '../providers/group/group';
+import {GroupProvider} from '../providers/group/group';
+import {Network} from "@ionic-native/network";
+import {ImgProvider} from '../providers/img/img';
+import {LazyLoadDirective} from "../directives/lazy-load/lazy-load";
+import {LazyImgComponent} from "../components/lazy-img/lazy-img";
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { GroupProvider } from '../providers/group/group';
     PopoverDefaultPage,
     FaqPage,
     AboutPage,
+    LazyLoadDirective,
+    LazyImgComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,7 @@ import { GroupProvider } from '../providers/group/group';
     PopoverDefaultPage,
     FaqPage,
     AboutPage,
+    LazyImgComponent,
   ],
   providers: [
     HttpProvider,
@@ -67,6 +74,7 @@ import { GroupProvider } from '../providers/group/group';
     SplashScreen,
     BackgroundMode,
     LocalNotifications,
+    Network,
     {
       provide: APP_INITIALIZER,
       useFactory: configServiceFactory,
@@ -78,6 +86,7 @@ import { GroupProvider } from '../providers/group/group';
     PopoverProvider,
     NotificationProvider,
     GroupProvider,
+    ImgProvider,
   ]
 })
 export class AppModule {
