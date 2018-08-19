@@ -1,10 +1,11 @@
 import {IAddress} from "./interfaces/IAddress";
+import {IPlatformDependentURL} from "./interfaces/IPlatformDependentURL";
 
 export class Address implements IAddress {
   /**
    * The Google Maps URL for the Address
    */
-  private _url: string;
+  private _url: IPlatformDependentURL;
 
   /**
    * The Lat(itude) of the address
@@ -28,14 +29,14 @@ export class Address implements IAddress {
    * @param {string} lon
    * @param text
    */
-  constructor(url: string, lat: string, lon: string, text: { city: string; zip: string; street: string; comment?: string }) {
+  constructor(url: IPlatformDependentURL, lat: string, lon: string, text: { city: string; zip: string; street: string; comment?: string }) {
     this._url = url;
     this._lat = lat;
     this._lon = lon;
     this._text = text;
   }
 
-  get url(): string {
+  get url(): IPlatformDependentURL {
     return this._url;
   }
 

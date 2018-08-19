@@ -34,6 +34,11 @@ export class ConfigProvider {
         this._config[key] = config[key];
       }
 
+      const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies';
+      const response = await this.http.get(url);
+      const currentWave = response.current;
+      this._config['wavetrophy.hash'] =  currentWave;
+
       // Save configuration
       this.storage.set('config', this._config);
 

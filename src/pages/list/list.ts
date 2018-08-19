@@ -18,7 +18,7 @@ export class ListPage {
   constructor(public navCtrl: NavController, private http: HttpProvider) {
     this.loadContacts();
     // TODO Contacts load images with caching
-    // TODO Contacts show placeholder image while loading images
+    // TODO Contacts show placeholder images while loading images
   }
 
   search(event: any) {

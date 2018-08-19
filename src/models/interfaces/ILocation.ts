@@ -1,5 +1,6 @@
 import {IAddress} from "./IAddress";
 import {IWaveEvent} from "./IWaveEvent";
+import {IImageURL} from "./IImageURL";
 
 export interface ILocation {
   /**
@@ -8,14 +9,14 @@ export interface ILocation {
   hash: string;
 
   /**
-   * The name of the location
+   * The title of the location
    */
   name: string;
 
   /**
-   * The title image of the location
+   * The title images of the location
    */
-  image: string;
+  images: IImageURL[];
 
   /**
    * The title of the location

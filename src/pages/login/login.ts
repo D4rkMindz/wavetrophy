@@ -4,6 +4,8 @@ import {MenuController, NavController} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ConfigProvider} from "../../providers/config/config";
+import {GroupProvider} from "../../providers/group/group";
+import {IGroup} from "../../models/interfaces/IGroup";
 
 /**
  * Generated class for the LoginPage page.
@@ -20,17 +22,27 @@ export class LoginPage {
 
   loginForm;
   groupnumber;
+  public groups: IGroup[];
 
   constructor(public navCtrl: NavController,
               private menuCtrl: MenuController,
               private formBuilder: FormBuilder,
               private storage: Storage,
-              private config: ConfigProvider) {
+              private config: ConfigProvider,
+              private group: GroupProvider) {
     this.menuCtrl.enable(false, 'main-menu');
     this.loginForm = this.formBuilder.group({
       groupNumber: ['', Validators.required]
     });
-    // TODO next: load groups from file/server
+    this.loadGroups();
+  }
+
+  /**
+   * Load groups
+   */
+  private async loadGroups() {
+    const wavetrophyHash = this.config.get('wavetrophy.hash');
+    this.groups = await this.group.getGroups(wavetrophyHash);
   }
 
   login() {

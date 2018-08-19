@@ -1,8 +1,10 @@
+import {IPlatformDependentURL} from "./IPlatformDependentURL";
+
 export interface IAddress {
   /**
    * The Google Maps URL for the Address
    */
-  url: string;
+  url: IPlatformDependentURL;
 
   /**
    * The Lat(itude) of the address

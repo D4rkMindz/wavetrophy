@@ -13,9 +13,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let location of locations" id="{{location.id}}">
+  <ion-card *ngFor="let location of locations" id="{{location.hash}}">
     <div *ngIf="location.image">
-      <img src="{{location.image}}"/>
+      <img src="{{location.image[0].url}}"/>
     </div>
     <ion-card-content>
       <ion-card-title>
@@ -24,7 +24,7 @@
       <ion-list>
         <ion-item *ngFor="let event of location.events">
           <h4 style="margin-top: 0.3em;">
-            {{event.date.format('HH')}}:{{event.date.format('mm')}} Uhr {{event.name}}
+            {{event.start.format('HH')}}:{{event.start.format('mm')}} Uhr {{event.title}}
           </h4>
           <div *ngIf="event.description">
             <p>{{event.description}}</p>
@@ -39,7 +39,7 @@
       <h3>Koordinaten</h3>
       <p>latitude/longitude: {{location.address.lat}}/{{location.address.lon}}</p>
       <br>
-      <a href="{{location.address.url}}">
+      <a href="{{platform.is('android')?location.address.url.android: location.address.url.ios}}">
         <button ion-button block>
           Bring mich dort hin
         </button>

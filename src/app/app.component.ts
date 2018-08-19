@@ -3,12 +3,12 @@ import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Storage} from "@ionic/storage";
+import { CacheService } from "ionic-cache";
 
 import {HomePage} from '../pages/home/home';
 import {ListPage} from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {BackgroundMode} from "@ionic-native/background-mode";
-import {CacheService} from "ionic-cache";
 import {HTTP_CACHE_TTL} from "../providers/config/constants";
 
 @Component({

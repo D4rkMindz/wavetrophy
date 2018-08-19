@@ -1,4 +1,5 @@
 import {Moment} from "moment";
+import {IImageURL} from "./IImageURL";
 
 export interface IWaveEvent {
   /**
@@ -7,17 +8,27 @@ export interface IWaveEvent {
   hash: string;
 
   /**
-   * The moment when the event starts
+   * The day of the wavetrophy (first day of trophy = 1)
    */
-  date: Moment;
+  day: number;
 
   /**
-   * The name of the event
+   * The moment when the event starts
    */
-  name: string;
+  start: Moment;
+
+  /**
+   * The title of the event
+   */
+  title: string;
 
   /**
    * The optional description of the event
    */
   description: string;
+
+  /**
+   * Event Images
+   */
+  images: IImageURL[];
 }

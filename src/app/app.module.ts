@@ -22,6 +22,8 @@ import {SettingsPage} from "../pages/settings/settings";
 import {PopoverDefaultPage} from "../pages/popover-default/popover-default";
 import {FaqPage} from "../pages/faq/faq";
 import {AboutPage} from "../pages/about/about";
+import {NotificationProvider} from '../providers/notification/notification';
+import { GroupProvider } from '../providers/group/group';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import {AboutPage} from "../pages/about/about";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationProvider,
     PopoverProvider,
+    NotificationProvider,
+    GroupProvider,
   ]
 })
 export class AppModule {

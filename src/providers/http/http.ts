@@ -24,11 +24,11 @@ export class HttpProvider {
   public async get(url, groupKey = HTTP_CACHE_GROUP_KEY, ttl = HTTP_CACHE_TTL, refresher?: Refresher) {
     let key = url;
     let request = this.http.get(url).map((res: Response) => {
-      let toast = this.toastCtrl.create({
-        message: 'Daten vom Server geladen',
-        duration: 1000,
-      });
-      toast.present();
+      // let toast = this.toastCtrl.create({
+      //   message: 'Daten vom Server geladen',
+      //   duration: 1000,
+      // });
+      // toast.present();
       return res;
     });
     let data;
