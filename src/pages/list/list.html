@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -25,7 +25,7 @@
 
     </button>
   </ion-list>
-  <ion-card *ngIf="!contacts">
+  <ion-card *ngIf="!connected">
     <ion-card-content>
       <ion-card-title>
         <h1>Fehlende Internetverbindung</h1>

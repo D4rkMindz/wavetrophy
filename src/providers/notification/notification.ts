@@ -28,6 +28,7 @@ export class NotificationProvider {
       return;
     }
     console.log('Locations: ', locations);
+    const notifications = [];
     locations.forEach((location: ILocation, locationIndex) => {
       const lastEventIndex = location.events.length - 1;
       const event = location.events[lastEventIndex];
@@ -44,9 +45,10 @@ export class NotificationProvider {
         text: 'Es wird Zeit zum Weiterfahren. Der nächste Halt ist ' + nextLocation,
         led: notificationColor,
       };
-      this.localNotifications.schedule(notification);
+      notifications.push(notification);
       console.log(`Notification scheduled for ${id}`);
-    })
+    });
+    this.localNotifications.schedule(notifications);
   }
 
 }

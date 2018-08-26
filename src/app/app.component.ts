@@ -32,7 +32,7 @@ export class WavetrophyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      {title: 'Stream', component: HomePage},
+      {title: 'Start', component: HomePage},
       {title: 'Kontakte', component: ListPage}
     ];
 

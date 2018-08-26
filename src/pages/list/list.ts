@@ -1,26 +1,30 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
 import {HttpProvider} from "../../providers/http/http";
 import {ConfigProvider} from "../../providers/config/config";
+import {Network} from "@ionic-native/network";
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  contacts: Array<{ name: string, position: string, phonenumber: string, email?: string }>;
-  _full_contacts: Array<{ name: string, position: string, phonenumber: string, email?: string }>;
+  contacts: Array<{ first_name: string, last_name: string, position: string, phonenumber: string, email?: string }>;
+  connected = true;
+
+  _full_contacts: Array<{ first_name: string, last_name: string, position: string, phonenumber: string, email?: string }>;
 
   /**
    * ListPage constructor
-   * @param navCtrl
    * @param http
    * @param config
+   * @param network
    */
-  constructor(private navCtrl: NavController,
-              private http: HttpProvider,
-              private config: ConfigProvider) {
+  constructor(private http: HttpProvider,
+              private config: ConfigProvider,
+              private network: Network) {
     this.loadContacts();
+    this.network.onDisconnect().subscribe(() => this.connected = false);
+    this.network.onConnect().subscribe(() => this.connected = true);
     // TODO Contacts load images with caching
     // TODO Contacts show placeholder images while loading images
   }
@@ -30,9 +34,10 @@ export class ListPage {
     const searchQuery = event.target.value;
     if (searchQuery && searchQuery.trim() !== '') {
       this.contacts = this.contacts.filter((contact) => {
-        const foundByName = contact.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
+        const foundByFirstName = contact.first_name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
+        const foundByLastName = contact.last_name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
         const foundByPosition = contact.position.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
-        return foundByName || foundByPosition;
+        return foundByFirstName || foundByLastName || foundByPosition;
       });
     }
   }
