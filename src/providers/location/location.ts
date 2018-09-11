@@ -9,6 +9,7 @@ import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
 import {Refresher} from "ionic-angular";
 import {PlatformDependentURL} from "../../models/PlatformDependentURL";
 import {ImageURL} from "../../models/ImageURL";
+import {ConfigProvider} from "../config/config";
 
 @Injectable()
 export class LocationProvider {
@@ -19,8 +20,9 @@ export class LocationProvider {
   /**
    * LocationProvider constructor
    * @param http
+   * @param config
    */
-  constructor(public http: HttpProvider) {
+  constructor(public http: HttpProvider, private config: ConfigProvider) {
   }
 
   /**
@@ -47,7 +49,8 @@ export class LocationProvider {
    */
   private async loadLocations(refresher?: Refresher) {
     try {
-      const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies/wave2018/groups/group1/stream';
+      const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies/' + this.config.get('wavetrophy.hash') + '/groups/' + this.config.get('group.hash') + '/stream';
+      console.log('Getting data from ', url);
       this._locationsJSON = await this.http.get(url, HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL, refresher);
       this._locations = this.parseLocations(this._locationsJSON['locations']);
     } catch (e) {
@@ -120,10 +123,10 @@ export class LocationProvider {
       const hash = event.hash;
       const day = parseInt(event.day);
       const start = moment(event.start);
-      const title = event.name;
+      const title = event.title;
       let images = [];
-      event.images.forEach((image: string) => {
-        images.push(new ImageURL(image));
+      event.images.forEach((image: any) => {
+        images.push(new ImageURL(image.url));
       });
       let description = '';
       if ('description' in event) {

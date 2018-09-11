@@ -6,6 +6,7 @@ import {LocationProvider} from "../../providers/location/location";
 import {ILocation} from "../../models/interfaces/ILocation";
 import {PopoverProvider} from "../../providers/popover/popover";
 import {NotificationProvider} from "../../providers/notification/notification";
+import {ConfigProvider} from "../../providers/config/config";
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,7 @@ export class HomePage {
 
   locations: ILocation[];
   information: any;
+  xconfig: ConfigProvider;
 
   /**
    * HomePage constructor
@@ -25,6 +27,7 @@ export class HomePage {
    * @param backgroundMode
    * @param location
    * @param popover
+   * @param config
    * @param notifications
    */
   constructor(public navCtrl: NavController,
@@ -33,12 +36,14 @@ export class HomePage {
               private backgroundMode: BackgroundMode,
               private location: LocationProvider,
               private  popover: PopoverProvider,
+              private config: ConfigProvider,
               protected notifications: NotificationProvider) {
     // will be loaded if user is logged in via app.component.ts
     this.backgroundMode.on('activate').subscribe(() => {
       this.registerNotifications(this.locations);
     });
     this.menuCtrl.enable(true, 'main-menu');
+    this.xconfig = this.config;
     // TODO Stream load images with caching
     // TODO Stream show placeholder images while loading images
     // TODO make subpage for each event to link to in notifications
@@ -46,7 +51,6 @@ export class HomePage {
 
   async ionViewWillEnter() {
     await this.loadLocations();
-    console.log('Image URL: ', this.locations[0].images[0].url)
   }
 
   /**
@@ -72,6 +76,7 @@ export class HomePage {
   async loadLocations() {
     const locations = await this.location.getLocations();
     this.locations = await this.removePassedEvents(locations);
+    console.log('locations', this.locations);
   }
 
   /**

@@ -28,7 +28,7 @@ export class ConfigProvider {
     if (!(await this.hasConfigBeenLoadedBefore())) {
       // Load and save configuration
       const config = await this.http.get('assets/config/config.default.json');
-
+      console.log('Loaded config', config);
       this._config = [];
       for (let key in config) {
         this._config[key] = config[key];
@@ -37,7 +37,8 @@ export class ConfigProvider {
       const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies';
       const response = await this.http.get(url);
       const currentWave = response.current;
-      this._config['wavetrophy.hash'] =  currentWave;
+      console.log('current wave:', currentWave);
+      this._config['wavetrophy.hash'] = currentWave;
 
       // Save configuration
       this.storage.set('config', this._config);
@@ -80,7 +81,8 @@ export class ConfigProvider {
     if (key in this._config) {
       return this._config[key];
     }
-    throw Error(`You tried to access a configuration key that does not exist (key: ${key}`);
+    //throw Error(`You tried to access a configuration key that does not exist (key: ${key}`);
+    return null;
   }
 
   /**

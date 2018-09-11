@@ -15,7 +15,7 @@
 <ion-content padding>
   <ion-card *ngFor="let location of locations" id="{{location.hash}}">
     <div *ngIf="location.images">
-      <lazy-img src="{{location.images[0].url}}"></lazy-img>
+      <lazy-img src="{{xconfig.get('server.baseurl')}}/{{location.images[0].url}}"></lazy-img>
     </div>
     <ion-card-content>
       <ion-card-title>
@@ -24,7 +24,7 @@
       <ion-list>
         <ion-item *ngFor="let event of location.events">
           <h4 style="margin-top: 0.3em;">
-            {{event.start.format('HH')}}:{{event.start.format('mm')}} Uhr {{event.title}}
+            Tag {{event.day}} - {{event.start.format('HH')}}:{{event.start.format('mm')}} Uhr {{event.title}}
           </h4>
           <div *ngIf="event.description">
             <p>{{event.description}}</p>

@@ -28,6 +28,7 @@ import {Network} from "@ionic-native/network";
 import {ImgProvider} from '../providers/img/img';
 import {LazyLoadDirective} from "../directives/lazy-load/lazy-load";
 import {LazyImgComponent} from "../components/lazy-img/lazy-img";
+import {SQLite} from "@ionic-native/sqlite";
 
 @NgModule({
   declarations: [
@@ -47,8 +48,8 @@ import {LazyImgComponent} from "../components/lazy-img/lazy-img";
     HttpClientModule,
     IonicModule.forRoot(WavetrophyApp),
     IonicStorageModule.forRoot({
-      name: '__wavetrophy',
-      driverOrder: ['indexeddb'],
+      name: 'data.db',
+      driverOrder: ['sqlite', 'websql', 'indexeddb'],
       storeName: '_main'
     }),
     CacheModule.forRoot({
@@ -72,6 +73,7 @@ import {LazyImgComponent} from "../components/lazy-img/lazy-img";
     ConfigProvider,
     StatusBar,
     SplashScreen,
+    SQLite,
     BackgroundMode,
     LocalNotifications,
     Network,

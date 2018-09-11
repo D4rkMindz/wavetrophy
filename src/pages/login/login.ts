@@ -21,7 +21,7 @@ import {IGroup} from "../../models/interfaces/IGroup";
 export class LoginPage {
 
   loginForm;
-  groupnumber;
+  groupNumber;
   public groups: IGroup[];
 
   constructor(public navCtrl: NavController,
@@ -30,11 +30,15 @@ export class LoginPage {
               private storage: Storage,
               private config: ConfigProvider,
               private group: GroupProvider) {
+    this.buildForm();
+  }
+
+  async ionViewWillEnter() {
     this.menuCtrl.enable(false, 'main-menu');
-    this.loginForm = this.formBuilder.group({
-      groupNumber: ['', Validators.required]
-    });
-    this.loadGroups();
+    this.buildForm();
+    this.storage.clear()
+      .then(() => this.config.loadConfig())
+      .then(() => this.loadGroups());
   }
 
   /**
@@ -43,6 +47,12 @@ export class LoginPage {
   private async loadGroups() {
     const wavetrophyHash = this.config.get('wavetrophy.hash');
     this.groups = await this.group.getGroups(wavetrophyHash);
+  }
+
+  private buildForm() {
+    this.loginForm = this.formBuilder.group({
+      groupNumber: ['', Validators.required]
+    });
   }
 
   login() {

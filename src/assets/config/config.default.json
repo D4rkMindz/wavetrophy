@@ -3,5 +3,6 @@
   "language":"de",
   "notifications.active":true,
   "notifications.color":"#7CB728",
-  "notifications.ahead": 15
+  "notifications.ahead": 15,
+  "server.baseurl": "https://api.wavetrophy.d4rkmindz.ch"
 }
