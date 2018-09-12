@@ -43,7 +43,6 @@ export class HomePage {
       this.registerNotifications(this.locations);
       this.config.saveAll();
     });
-    this.menuCtrl.enable(true, 'main-menu');
     this.xconfig = this.config;
     // TODO Stream load images with caching
     // TODO Stream show placeholder images while loading images
@@ -51,8 +50,9 @@ export class HomePage {
   }
 
   async ionViewWillEnter() {
+    console.log('menus', this.menuCtrl.getMenus());
+    // this.menuCtrl.enable(true, 'main-menu');
     await this.loadLocations();
-    this.menuCtrl.enable(true, 'main-menu');
   }
 
   /**
@@ -90,9 +90,12 @@ export class HomePage {
   private removePassedEvents(locations: ILocation[]) {
     const tmp = [];
     locations.forEach((location) => {
-      const eventDate = location.events[location.events.length - 1].start;
-      if (eventDate.isAfter(moment(), 'hours')) {
-        tmp.push(location);
+      const event = location.events[location.events.length - 1];
+      if (event && 'start' in event) {
+        const eventDate = event.start;
+        if (eventDate.isAfter(moment(), 'hours')) {
+          tmp.push(location);
+        }
       }
     });
     return tmp;

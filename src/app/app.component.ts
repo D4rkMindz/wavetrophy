@@ -23,6 +23,8 @@ export class WavetrophyApp {
 
   pages: Array<{ title: string, component: any }>;
 
+  console;
+
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
@@ -31,13 +33,13 @@ export class WavetrophyApp {
               private cache: CacheService) {
     this.initializeApp();
 
+    this.console = console;
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Start', component: HomePage},
       {title: 'Kontakte', component: ListPage},
       {title: 'Fragen und Antworten', component: FaqPage}
     ];
-
   }
 
   async initializeApp() {

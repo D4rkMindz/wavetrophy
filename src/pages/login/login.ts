@@ -22,12 +22,12 @@ import {CacheService} from "ionic-cache";
 export class LoginPage {
 
   loginForm;
-  groupNumber;
+  groupnumber;
   public groups: IGroup[];
 
   constructor(public navCtrl: NavController,
               private navParam: NavParams,
-              private menuCtrl: MenuController,
+              public menuCtrl: MenuController,
               private formBuilder: FormBuilder,
               private storage: Storage,
               private cache: CacheService,
@@ -49,6 +49,10 @@ export class LoginPage {
       console.log('ionviewdidload reload called');
       this.reload();
     }
+  }
+
+  async ionViewDidLeave() {
+    this.menuCtrl.enable(true, 'main-menu');
   }
 
   async reload() {
