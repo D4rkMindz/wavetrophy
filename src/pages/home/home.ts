@@ -41,6 +41,7 @@ export class HomePage {
     // will be loaded if user is logged in via app.component.ts
     this.backgroundMode.on('activate').subscribe(() => {
       this.registerNotifications(this.locations);
+      this.config.saveAll();
     });
     this.menuCtrl.enable(true, 'main-menu');
     this.xconfig = this.config;
@@ -51,6 +52,7 @@ export class HomePage {
 
   async ionViewWillEnter() {
     await this.loadLocations();
+    this.menuCtrl.enable(true, 'main-menu');
   }
 
   /**
@@ -75,6 +77,7 @@ export class HomePage {
    */
   async loadLocations() {
     const locations = await this.location.getLocations();
+    console.log('locatinos const', locations);
     this.locations = await this.removePassedEvents(locations);
     console.log('locations', this.locations);
   }

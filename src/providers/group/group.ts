@@ -63,7 +63,7 @@ export class GroupProvider {
    */
   private parseGroups(data: any[]): Location[] {
     const groups = [];
-    console.log(data);
+    console.log('groups',data);
     data.forEach((group) => {
       console.log('group', group);
       const hash = group.hash;

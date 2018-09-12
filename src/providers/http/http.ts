@@ -19,8 +19,7 @@ export class HttpProvider {
    */
   constructor(private http: HttpClient,
               private cache: CacheService,
-              private network: Network,
-              private toastCtrl: ToastController) {
+              private network: Network) {
     this.network.onDisconnect().subscribe(() => this._isConnected = false);
     this.network.onConnect().subscribe(() => this._isConnected = true);
   }

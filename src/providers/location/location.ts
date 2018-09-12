@@ -54,6 +54,7 @@ export class LocationProvider {
       this._locationsJSON = await this.http.get(url, HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL, refresher);
       this._locations = this.parseLocations(this._locationsJSON['locations']);
     } catch (e) {
+      this._locations = [];
       return false;
     }
     return true;

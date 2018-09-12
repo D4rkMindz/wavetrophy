@@ -46,7 +46,7 @@
       </a>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="!(locations)">
+  <ion-card *ngIf="(locations !== undefined && locations !== null && locations.length <=0)">
     <ion-card-content>
       <ion-card-title>
         <h1>Danke für die Teilnahme</h1>

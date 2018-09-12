@@ -6,6 +6,7 @@ import {AboutPage} from "../about/about";
 import {ConfigProvider} from "../../providers/config/config";
 import {LoginPage} from "../login/login";
 import {Storage} from "@ionic/storage";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the PopoverSettingsPage page.
@@ -20,9 +21,7 @@ import {Storage} from "@ionic/storage";
     <ion-list>
       <button ion-item (click)="openSettings()">Einstellungen</button>
       <button ion-item (click)="openAbout()">Über</button>
-      <button ion-item (click)="openFAQ()">Fragen & Antworten</button>
       <button ion-item (click)="changeGroup()">Gruppe wechseln</button>
-      <button ion-item (click)="clearCache()">Cache leeren</button>
     </ion-list>
   `,
 })
@@ -44,17 +43,8 @@ export class PopoverDefaultPage {
     await this.viewCtrl.dismiss();
   }
 
-  async openFAQ() {
-    this.navCtrl.push(FaqPage);
-    await this.viewCtrl.dismiss();
-  }
-
-  async clearCache() {
-    await this.storage.clear();
-    await this.config.loadConfig();
-  }
-
   async changeGroup() {
+    await this.viewCtrl.dismiss();
     this.navCtrl.setRoot(LoginPage);
   }
 }

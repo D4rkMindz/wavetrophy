@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
 import {WavetrophyApp} from './app.component';
@@ -29,6 +29,27 @@ import {ImgProvider} from '../providers/img/img';
 import {LazyLoadDirective} from "../directives/lazy-load/lazy-load";
 import {LazyImgComponent} from "../components/lazy-img/lazy-img";
 import {SQLite} from "@ionic-native/sqlite";
+import {Pro} from "@ionic/pro";
+
+Pro.init('70a1a0db', {
+  appVersion: '0.0.5'
+});
+
+@Injectable()
+export class ProErrorHandler implements ErrorHandler {
+
+  ionicErrorHandler: IonicErrorHandler;
+
+  constructor(injector: Injector) {
+    this.ionicErrorHandler = injector.get(IonicErrorHandler);
+  }
+
+  handleError(err: any): void {
+    Pro.monitoring.handleNewError(err);
+    this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -49,7 +70,7 @@ import {SQLite} from "@ionic-native/sqlite";
     IonicModule.forRoot(WavetrophyApp),
     IonicStorageModule.forRoot({
       name: 'data.db',
-      driverOrder: ['sqlite', 'websql', 'indexeddb'],
+      driverOrder: ['indexeddb', 'sqlite'],
       storeName: '_main'
     }),
     CacheModule.forRoot({
@@ -83,7 +104,8 @@ import {SQLite} from "@ionic-native/sqlite";
       deps: [ConfigProvider],
       multi: true,
     },
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    IonicErrorHandler,
+    {provide: ErrorHandler, useClass: ProErrorHandler},
     LocationProvider,
     PopoverProvider,
     NotificationProvider,

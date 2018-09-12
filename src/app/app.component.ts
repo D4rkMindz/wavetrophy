@@ -11,6 +11,7 @@ import {LoginPage} from "../pages/login/login";
 import {BackgroundMode} from "@ionic-native/background-mode";
 import {HTTP_CACHE_TTL} from "../providers/config/constants";
 import ImgCache from 'imgcache.js';
+import {FaqPage} from "../pages/faq/faq";
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +34,8 @@ export class WavetrophyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Start', component: HomePage},
-      {title: 'Kontakte', component: ListPage}
+      {title: 'Kontakte', component: ListPage},
+      {title: 'Fragen und Antworten', component: FaqPage}
     ];
 
   }

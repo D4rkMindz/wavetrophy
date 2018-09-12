@@ -1,4 +1,4 @@
-Version in config.xml anpassen
+Version in config.xml, package.json und app.module.ts anpassen
 Ggf alte Wavetrophy.apk Datei löschen (/platforms/android/build/outputs/apk/)
 ionic cordova build android --prod --release
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore D:\dev\Wavetrophy\App\Android\Keys\wavetrophy-release-key-android.jks C:\xampp\htdocs\wavetrophy\platforms\android\build\outputs\apk\android-release-unsigned.apk wavetrophy
