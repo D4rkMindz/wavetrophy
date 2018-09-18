@@ -32,7 +32,7 @@ import {SQLite} from "@ionic-native/sqlite";
 import {Pro} from "@ionic/pro";
 
 Pro.init('70a1a0db', {
-  appVersion: '0.0.5'
+  appVersion: '0.01.0'
 });
 
 @Injectable()
