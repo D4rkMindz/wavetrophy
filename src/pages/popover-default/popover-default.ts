@@ -6,7 +6,6 @@ import {AboutPage} from "../about/about";
 import {ConfigProvider} from "../../providers/config/config";
 import {LoginPage} from "../login/login";
 import {Storage} from "@ionic/storage";
-import {HomePage} from "../home/home";
 
 /**
  * Generated class for the PopoverSettingsPage page.
