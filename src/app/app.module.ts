@@ -70,7 +70,7 @@ export class ProErrorHandler implements ErrorHandler {
     IonicModule.forRoot(WavetrophyApp),
     IonicStorageModule.forRoot({
       name: 'data.db',
-      driverOrder: ['indexeddb', 'sqlite'],
+      driverOrder: ['sqlite', 'indexeddb'],
       storeName: '_main'
     }),
     CacheModule.forRoot({

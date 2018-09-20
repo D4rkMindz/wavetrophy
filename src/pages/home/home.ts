@@ -49,7 +49,7 @@ export class HomePage {
     // TODO make subpage for each event to link to in notifications
   }
 
-  async ionViewWillEnter() {
+  async ionViewDidEnter() {
     console.log('menus', this.menuCtrl.getMenus());
     // this.menuCtrl.enable(true, 'main-menu');
     await this.loadLocations();
@@ -77,7 +77,7 @@ export class HomePage {
    */
   async loadLocations() {
     const locations = await this.location.getLocations();
-    console.log('locatinos const', locations);
+    console.log('locations const', locations);
     this.locations = await this.removePassedEvents(locations);
     console.log('locations', this.locations);
   }

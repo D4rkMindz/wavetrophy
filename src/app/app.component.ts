@@ -10,8 +10,8 @@ import {ListPage} from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {BackgroundMode} from "@ionic-native/background-mode";
 import {HTTP_CACHE_TTL} from "../providers/config/constants";
-import ImgCache from 'imgcache.js';
 import {FaqPage} from "../pages/faq/faq";
+import { ConfigProvider } from "../providers/config/config";
 
 @Component({
   templateUrl: 'app.html'
@@ -30,6 +30,7 @@ export class WavetrophyApp {
               public splashScreen: SplashScreen,
               private storage: Storage,
               private backgroundMode: BackgroundMode,
+              private config: ConfigProvider,
               private cache: CacheService) {
     this.initializeApp();
 
@@ -45,7 +46,6 @@ export class WavetrophyApp {
   async initializeApp() {
     await this.platform.ready();
 
-    await ImgCache.init();
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.statusBar.styleDefault();
@@ -53,8 +53,10 @@ export class WavetrophyApp {
     this.enableBackgroundMode();
 
     const isLoggedIn = await this.storage.get('meta.user.is_logged_in');
+
     console.log('isLoggedIn:', isLoggedIn);
-    if (!!isLoggedIn) {
+    if (isLoggedIn && !!isLoggedIn && this.config.get('group.hash')) {
+      console.log('group hash at bootstrap', this.config.get('group.hash'));
       await this.nav.setRoot(HomePage);
     }
     this.cache.setDefaultTTL(HTTP_CACHE_TTL); // 20 Days TODO adjust for the maximum time of a wave-trophy

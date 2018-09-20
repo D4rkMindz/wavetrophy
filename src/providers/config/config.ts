@@ -41,13 +41,16 @@ export class ConfigProvider {
       this._config['wavetrophy.hash'] = currentWave;
 
       // Save configuration
-      this.storage.set('config', this._config);
+      const res = await this.saveAll();
+      console.log('set config:', res);
 
       // Set meta key that config was saved
-      this.storage.set('meta.config.has_been_loaded', true);
     } else {
       // Load configuration from storage
-      this._config = await this.storage.get('config');
+      console.log('getting config from storage');
+      const conf = await this.storage.get('config');
+      this._config = JSON.parse(conf);
+      console.log('config', this._config);
     }
   }
 
@@ -57,7 +60,7 @@ export class ConfigProvider {
    * @returns {Promise<boolean>}
    */
   private async hasConfigBeenLoadedBefore() {
-    const hasBeenLoaded = await this.storage.get('meta.config.has_been_loaded');
+    const hasBeenLoaded = await this.storage.get('config');
     return !!hasBeenLoaded;
   }
 
@@ -68,7 +71,9 @@ export class ConfigProvider {
    * @param value
    */
   public set(key: string, value: any) {
+    console.log('CONFIG. Setting ' +key+' value:' +value);
     this._config[key] = value;
+    console.log('WHOLE CONFIG on set:', this._config);
   }
 
   /**
@@ -95,7 +100,8 @@ export class ConfigProvider {
    */
   public async saveAll(): Promise<boolean> {
     try {
-      await this.storage.set('config', this._config);
+      console.log('Configuration to save:', this._config);
+      await this.storage.set('config', JSON.stringify(this._config));
     } catch (e) {
       return false;
     }

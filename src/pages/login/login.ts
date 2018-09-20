@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {Storage} from "@ionic/storage";
-import {MenuController, NavController, NavParams} from 'ionic-angular';
-import {HomePage} from "../home/home";
-import {FormBuilder, Validators} from "@angular/forms";
-import {ConfigProvider} from "../../providers/config/config";
-import {GroupProvider} from "../../providers/group/group";
-import {IGroup} from "../../models/interfaces/IGroup";
-import {CacheService} from "ionic-cache";
+import { Component } from '@angular/core';
+import { Storage } from "@ionic/storage";
+import { MenuController, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from "../home/home";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ConfigProvider } from "../../providers/config/config";
+import { GroupProvider } from "../../providers/group/group";
+import { IGroup } from "../../models/interfaces/IGroup";
+import { CacheService } from "ionic-cache";
 
 /**
  * Generated class for the LoginPage page.
@@ -34,7 +34,7 @@ export class LoginPage {
               private config: ConfigProvider,
               private group: GroupProvider) {
     this.buildForm();
-    if (!this.config.get('meta.config.has_been_loaded')) {
+    if (!this.config.get('group.hash')) {
       console.log('Constructor reload called');
       this.reload();
     }
@@ -81,14 +81,12 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log('before menuctrl enable login.ts');
     this.menuCtrl.enable(true, 'main-menu');
-    console.log('after menuctrl enable login.ts');
-    const i = this.menuCtrl.isEnabled('main-menu');
-    console.log('main menu enabled:', i);
+    console.log('Group number @login', this.loginForm.controls.groupNumber.value);
     this.config.set('group.hash', this.loginForm.controls.groupNumber.value);
-    this.config.saveAll();
-    this.storage.set('meta.user.is_logged_in', true);
+    this.config.saveAll().then(() => {
+      this.storage.set('meta.user.is_logged_in', true);
+    });
     this.navCtrl.setRoot(HomePage);
   }
 }

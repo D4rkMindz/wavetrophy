@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {HttpProvider} from "../http/http";
-import {ILocation} from "../../models/interfaces/ILocation";
-import {WaveEvent} from "../../models/WaveEvent";
-import {Location} from "../../models/Location";
+import { Injectable } from '@angular/core';
+import { HttpProvider } from "../http/http";
+import { ILocation } from "../../models/interfaces/ILocation";
+import { WaveEvent } from "../../models/WaveEvent";
+import { Location } from "../../models/Location";
 import * as moment from "moment";
-import {Address} from "../../models/Address";
-import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
-import {Refresher} from "ionic-angular";
-import {PlatformDependentURL} from "../../models/PlatformDependentURL";
-import {ImageURL} from "../../models/ImageURL";
-import {ConfigProvider} from "../config/config";
+import { Address } from "../../models/Address";
+import { HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL } from "../config/constants";
+import { Refresher } from "ionic-angular";
+import { PlatformDependentURL } from "../../models/PlatformDependentURL";
+import { ImageURL } from "../../models/ImageURL";
+import { ConfigProvider } from "../config/config";
 
 @Injectable()
 export class LocationProvider {
@@ -49,7 +49,9 @@ export class LocationProvider {
    */
   private async loadLocations(refresher?: Refresher) {
     try {
-      const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies/' + this.config.get('wavetrophy.hash') + '/groups/' + this.config.get('group.hash') + '/stream';
+      const groupHash = this.config.get('group.hash');
+      console.log('GroupHash', groupHash);
+      const url = 'https://api.wavetrophy.d4rkmindz.ch/v1/trophies/' + this.config.get('wavetrophy.hash') + '/groups/' + groupHash + '/stream';
       console.log('Getting data from ', url);
       this._locationsJSON = await this.http.get(url, HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL, refresher);
       this._locations = this.parseLocations(this._locationsJSON['locations']);
