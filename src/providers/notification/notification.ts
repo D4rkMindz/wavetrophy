@@ -17,8 +17,16 @@ export class NotificationProvider {
   }
 
   public async registerLocationNotifications(locations: ILocation[]) {
-    await this.localNotifications.cancelAll();
-    await this.localNotifications.clearAll();
+    const hasPermission = await this.requestPermission();
+    if (!hasPermission) {
+      console.log('Notification cancelled');
+      return;
+    }
+    const allNotifications = await this.localNotifications.getAll();
+    if (allNotifications.length > 0){
+      console.log('Cancelling notifications', allNotifications);
+      await this.localNotifications.cancelAll();
+    }
     console.log('Registering Notifications');
     const showNotifications = this.config.get('notifications.active');
     const notificationColor = this.config.get('notifications.color');
@@ -44,6 +52,10 @@ export class NotificationProvider {
         trigger: {at: date},
         text: 'Es wird Zeit zum Weiterfahren. Der nächste Halt ist ' + nextLocation,
         led: notificationColor,
+        vibrate: true,
+        wakeup: true,
+        lockscreen: true,
+        channel: "wavetrophy-depart-notification",
       };
       notifications.push(notification);
       console.log(`Notification scheduled for ${id}`);
@@ -51,4 +63,17 @@ export class NotificationProvider {
     this.localNotifications.schedule(notifications);
   }
 
+  public async requestPermission() {
+
+    if (!this.localNotifications.hasPermission()) {
+      console.log('Asking for permission');
+      const permissionGranted = await this.localNotifications.requestPermission();
+      if (!permissionGranted) {
+        console.log('Permission for Notifications not granted');
+        return false;
+      }
+      console.log('Permission for Notifications granted');
+    }
+    return true;
+  }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient} from "@angular/common/http";
-import {Refresher, ToastController} from "ionic-angular";
+import {Refresher} from "ionic-angular";
 import {CacheService} from "ionic-cache";
 import {HTTP_CACHE_GROUP_KEY, HTTP_CACHE_TTL} from "../config/constants";
 import {Network} from "@ionic-native/network";
@@ -15,7 +15,6 @@ export class HttpProvider {
    * @param {HttpClient} http
    * @param {CacheService} cache
    * @param {Network} network
-   * @param {ToastController} toastCtrl
    */
   constructor(private http: HttpClient,
               private cache: CacheService,
