@@ -9,7 +9,12 @@
           <ion-option *ngFor="let group of groups" value="{{group.hash}}">{{group.name}}</ion-option>
         </ion-select>
       </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password"></ion-input>
+      </ion-item>
     </ion-list>
+    <p *ngIf="loginForm.controls.password.hasError('error')">Der Vorname des Veranstalters</p>
     <button ion-button block type="submit" [disabled]="!loginForm.valid">Los</button>
   </form>
 

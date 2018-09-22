@@ -75,14 +75,13 @@ export class LoginPage {
     this.groups = await this.group.getGroups(wavetrophyHash);
   }
 
-  private buildForm() {
-    this.loginForm = this.formBuilder.group({
-      groupNumber: ['', Validators.required]
-    });
-  }
-
   login() {
     if (this.loginForm.invalid) {
+      return;
+    }
+    const password = this.loginForm.controls.password.value;
+    if (password.trim().toLowerCase() !== 'louis') {
+      this.loginForm.controls.password.setErrors({error: true});
       return;
     }
     this.menuCtrl.enable(true, 'main-menu');
@@ -92,5 +91,12 @@ export class LoginPage {
       this.storage.set('meta.user.is_logged_in', true);
     });
     this.navCtrl.setRoot(HomePage);
+  }
+
+  private buildForm() {
+    this.loginForm = this.formBuilder.group({
+      groupNumber: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 }
