@@ -28,11 +28,11 @@ import { Network } from "@ionic-native/network";
 import { ImgProvider } from '../providers/img/img';
 import { LazyLoadDirective } from "../directives/lazy-load/lazy-load";
 import { LazyImgComponent } from "../components/lazy-img/lazy-img";
-import { SQLite } from "@ionic-native/sqlite";
 import { Pro } from "@ionic/pro";
+import { SQLite } from "@ionic-native/sqlite";
 
 Pro.init('70a1a0db', {
-  appVersion: '0.1.0'
+  appVersion: '0.1.1'
 });
 
 @Injectable()
@@ -69,9 +69,9 @@ export class ProErrorHandler implements ErrorHandler {
     HttpClientModule,
     IonicModule.forRoot(WavetrophyApp),
     IonicStorageModule.forRoot({
-      name: 'wavetrophy_0-1-0.db',
-      driverOrder: ['indexeddb'],
-      storeName: '__wave_0-1-0'
+      name: 'wavetrophy_0-1-1.db',
+      driverOrder: ['sqlite', 'indexeddb'],
+      storeName: '__wave_0-1-1'
     }),
     CacheModule.forRoot({
       keyPrefix: '__httpcache'
@@ -94,7 +94,7 @@ export class ProErrorHandler implements ErrorHandler {
     ConfigProvider,
     StatusBar,
     SplashScreen,
-    // SQLite,
+    SQLite,
     BackgroundMode,
     LocalNotifications,
     Network,
