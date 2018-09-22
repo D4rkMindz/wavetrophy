@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {App, NavController, ViewController} from 'ionic-angular';
 import {SettingsPage} from "../settings/settings";
-import {FaqPage} from "../faq/faq";
 import {AboutPage} from "../about/about";
 import {ConfigProvider} from "../../providers/config/config";
 import {LoginPage} from "../login/login";
@@ -43,19 +42,9 @@ export class PopoverDefaultPage {
     await this.viewCtrl.dismiss();
   }
 
-  async openFAQ() {
-    this.navCtrl.push(FaqPage);
-    await this.viewCtrl.dismiss();
-  }
-
-  async clearCache() {
-    await this.storage.clear();
-    await this.config.loadConfig();
-  }
-
   async changeGroup() {
     await this.viewCtrl.dismiss();
-    this.app.getRootNav().setRoot(LoginPage);
+    this.app.getRootNav().setRoot(LoginPage, {reload: true});
   }
 }
 

@@ -10,9 +10,23 @@ export class Location implements ILocation {
   private _hash: string;
 
   /**
-   * The title of the location
+   * Location constructor
+   * @param {string} hash
+   * @param {string} name
+   * @param description
+   * @param {IImageURL[]}images
+   * @param title
+   * @param {IAddress} address
+   * @param {IWaveEvent[]} events
    */
-  private _name: string;
+  constructor(hash: string, description: string, images: IImageURL[], title: string, address: IAddress, events: IWaveEvent[]) {
+    this._hash = hash;
+    this._description = description;
+    this._images = images;
+    this._title = title;
+    this._address = address;
+    this._events = events;
+  }
 
   /**
    * The title images of the location
@@ -35,29 +49,16 @@ export class Location implements ILocation {
   private _events: IWaveEvent[];
 
   /**
-   * Location constructor
-   * @param {string} hash
-   * @param {string} name
-   * @param {IImageURL[]}images
-   * @param title
-   * @param {IAddress} address
-   * @param {IWaveEvent[]} events
+   * The description to the location
    */
-  constructor(hash: string, name: string, images: IImageURL[], title: string, address: IAddress, events: IWaveEvent[]) {
-    this._hash = hash;
-    this._name = name;
-    this._images = images;
-    this._title = title;
-    this._address = address;
-    this._events = events;
-  }
+  private _description: string;
 
   get hash(): string {
     return this._hash;
   }
 
-  get name(): string {
-    return this._name;
+  get description(): string {
+    return this._description;
   }
 
   get images(): IImageURL[] {

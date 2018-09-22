@@ -9,9 +9,9 @@ export interface ILocation {
   hash: string;
 
   /**
-   * The title of the location
+   * The description of the location
    */
-  name: string;
+  description: string;
 
   /**
    * The title images of the location

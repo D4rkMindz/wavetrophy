@@ -73,12 +73,12 @@ export class LocationProvider {
     data.forEach((location) => {
       console.log('location', location);
       const hash = location.hash;
-      const name = location.name;
       const images = this.parseImages(location.images);
       const title = location.title;
       const address = this.parseAddress(location.address);
       const events = this.parseEvents(location.events);
-      locations.push(new Location(hash, name, images, title, address, events));
+      const description = location.description;
+      locations.push(new Location(hash, description, images, title, address, events));
     });
     return locations;
   }

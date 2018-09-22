@@ -59,9 +59,9 @@ export class GroupProvider {
   /**
    * Parse locations from received data
    * @param {any[]} data
-   * @return {Location[]}
+   * @return {Group[]}
    */
-  private parseGroups(data: any[]): Location[] {
+  private parseGroups(data: any[]): Group[] {
     const groups = [];
     console.log('groups',data);
     data.forEach((group) => {

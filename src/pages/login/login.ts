@@ -33,22 +33,11 @@ export class LoginPage {
               private cache: CacheService,
               private config: ConfigProvider,
               private group: GroupProvider) {
-    this.buildForm();
-    if (!this.config.get('group.hash')) {
-      console.log('Constructor reload called');
-      this.reload();
-    }
+    this.check();
   }
 
   async ionViewDidLoad() {
-    // TODO Continue here, The Sidemenu wont open after viewCtrl dismiss (change group)
-    console.log('IonViewDidLoad in login.ts');
-    this.menuCtrl.enable(false, 'main-menu');
-    const reload = this.navParam.get('reload');
-    if (reload) {
-      console.log('ionviewdidload reload called');
-      this.reload();
-    }
+    this.check();
   }
 
   async ionViewDidLeave() {
@@ -56,11 +45,26 @@ export class LoginPage {
   }
 
   async reload() {
-    this.buildForm();
+    console.log('clearing all');
+    this.cache.clearAll();
+    console.log('cleared all, clearing storage');
     await this.storage.clear();
-    await this.cache.clearAll();
-    await this.config.loadConfig();
-    await this.loadGroups();
+    console.log('cleared storage, loading config');
+    this.config.loadConfig();
+  }
+
+  private check() {
+    this.buildForm();
+    this.loadGroups();
+    console.log('IonViewDidLoad in login.ts');
+    this.menuCtrl.enable(false, 'main-menu');
+    const reload = this.navParam.get('reload') || false;
+    // const reload = false;
+    console.log('Login.ts constructor , should reload: ', reload);
+    if (reload) {
+      console.log('Constructor reload called');
+      this.reload();
+    }
   }
 
   /**

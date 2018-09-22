@@ -22,9 +22,10 @@
       <ion-card-title>
         {{location.title}}
       </ion-card-title>
+      <p>{{location.description}}</p>
       <ion-list>
-        <ion-item *ngFor="let event of location.events">
-          <h4 style="margin-top: 0.3em; line-break: auto">
+        <ion-item *ngFor="let event of location.events" text-wrap style="white-space: normal">
+          <h4 style="margin-top: 0.3em;">
             Tag {{event.day}} - {{event.start.format('HH')}}:{{event.start.format('mm')}} Uhr {{event.title}}
           </h4>
           <div *ngIf="event.description">

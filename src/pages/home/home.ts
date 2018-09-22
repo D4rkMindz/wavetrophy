@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {MenuController, NavController, Platform} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { MenuController, NavController, Platform } from 'ionic-angular';
 import * as moment from "moment";
-import {BackgroundMode} from "@ionic-native/background-mode";
-import {LocationProvider} from "../../providers/location/location";
-import {ILocation} from "../../models/interfaces/ILocation";
-import {PopoverProvider} from "../../providers/popover/popover";
-import {NotificationProvider} from "../../providers/notification/notification";
-import {ConfigProvider} from "../../providers/config/config";
+import { BackgroundMode } from "@ionic-native/background-mode";
+import { LocationProvider } from "../../providers/location/location";
+import { ILocation } from "../../models/interfaces/ILocation";
+import { PopoverProvider } from "../../providers/popover/popover";
+import { NotificationProvider } from "../../providers/notification/notification";
+import { ConfigProvider } from "../../providers/config/config";
 
 @Component({
   selector: 'page-home',
@@ -23,6 +23,7 @@ export class HomePage {
    *
    * @param navCtrl
    * @param platform
+   * @param app
    * @param menuCtrl
    * @param backgroundMode
    * @param location
@@ -39,10 +40,12 @@ export class HomePage {
               private config: ConfigProvider,
               protected notifications: NotificationProvider) {
     // will be loaded if user is logged in via app.component.ts
-    this.backgroundMode.on('activate').subscribe(() => {
-      this.registerNotifications(this.locations);
-      this.config.saveAll();
-    });
+    if (this.platform.is('cordova')) {
+      this.backgroundMode.on('activate').subscribe(() => {
+        this.registerNotifications(this.locations);
+        this.config.saveAll();
+      });
+    }
     this.xconfig = this.config;
     // TODO Stream load images with caching
     // TODO Stream show placeholder images while loading images
