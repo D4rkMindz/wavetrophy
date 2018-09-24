@@ -25,7 +25,7 @@ export class EventsPage {
   }
 
   geo(lat, lon) {
-    return this.sanitizer.bypassSecurityTrustUrl(`geo:${lat},${lon}`);
+    return this.sanitizer.bypassSecurityTrustUrl(`geo:0,0?q=${lat},${lon}`);
   }
 
   async ionViewWillEnter() {
