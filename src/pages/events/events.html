@@ -1,0 +1,47 @@
+<ion-content padding>
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+  <ion-card *ngFor="let location of events" id="{{location.hash}}">
+    <!--<div *ngIf="location.images">-->
+    <!--<lazy-img src="{{xconfig.get('server.baseurl')}}/{{location.images[0].url}}"></lazy-img>-->
+    <!--</div>-->
+    <!--TODO LAZY LOAD IMAGE-->
+    <ion-card-content>
+      <ion-card-title>
+        {{location.title}}
+      </ion-card-title>
+      <p>{{location.description}}</p>
+      <ion-list>
+        <ion-item *ngFor="let event of location.events" text-wrap style="white-space: normal">
+          <h4 style="margin-top: 0.3em;">
+            Tag {{event.day}} - {{event.start.format('HH')}}:{{event.start.format('mm')}} Uhr {{event.title}}
+          </h4>
+          <div *ngIf="event.description">
+            <p>{{event.description}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+      <br>
+      <h2>Adresse</h2>
+      <p>{{location.address.text.street}}</p>
+      <p>{{location.address.text.zip}} {{location.address.text.city}}</p>
+      <br>
+      <h3>Koordinaten</h3>
+      <p>latitude/longitude: {{location.address.lat}}/{{location.address.lon}}</p>
+      <br>
+      <a [href]="geo(location.address.lat, location.address.lon)">
+        <button ion-button block>
+          Bring mich dort hin
+        </button>
+      </a>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="(locations !== undefined && locations !== null && locations.length <=0)">
+    <ion-card-content>
+      <ion-card-title>
+        <h1>Danke für die Teilnahme</h1>
+      </ion-card-title>
+      <p>Wir hoffen, dass dir die WAVETROHPY gefallen hat.</p>
+      <p>Bis zum nächsten Mal</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

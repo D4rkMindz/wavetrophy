@@ -1,0 +1,22 @@
+<ion-header no-shadow no-border>
+  <ion-navbar color="primary">
+
+    <button ion-button menuToggle color="light">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>WAVETROPHY App</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+<ion-content no-bounce>
+  <super-tabs *ngIf="pages.length >= 1" id="mainTabs" [config]="{ sideMenu: 'left' }" scrollTabs
+              toolbarBackground="primary" toolbarColor="light">
+    <super-tab [root]="page1" title="Events" id="page1"></super-tab>
+    <super-tab [root]="page2" title="Kontakte" id="page5"></super-tab>
+  </super-tabs>
+</ion-content>

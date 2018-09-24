@@ -1,0 +1,22 @@
+<ion-split-pane>
+  <ion-menu [content]="content" id="main-menu">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <button ion-item menuClose *ngFor="let item of menuItems" (click)="openPage(item)">{{ item.name }}</button>
+      </ion-list>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        Erstellt von <a href="https://darkmindz.ch">Björn Pfoster</a><br>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+  <ion-nav [root]="rootPage" main #content></ion-nav>
+</ion-split-pane>

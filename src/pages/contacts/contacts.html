@@ -1,0 +1,17 @@
+<ion-content padding>
+  <ion-searchbar (ionInput)="search($event)" placeholder="Kontakte durchsuchen"></ion-searchbar>
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+  <ion-list>
+    <button ion-item *ngFor="let contact of contacts" (click)="showContact(contact)">
+
+      <ion-avatar item-start>
+        <img src="assets/imgs/avatar_icon.png">
+      </ion-avatar>
+
+      <h3 margin-top="3px">{{contact.first_name}} {{contact.last_name}}</h3>
+      <p text-wrap>{{contact.position}}</p>
+      <p *ngIf="contact.email" text-wrap>{{contact.email}}</p>
+
+    </button>
+  </ion-list>
+</ion-content>

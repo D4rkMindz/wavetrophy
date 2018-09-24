@@ -1,0 +1,48 @@
+<ion-content padding>
+  <ion-grid style="height: 100%;">
+    <ion-col>
+      <ion-row>
+        <img style="height: 15vh;margin: 15vh auto 0 auto;" src="assets/imgs/logo.jpg"
+             alt="The logo of Credit Suisse Group AG">
+      </ion-row>
+      <ion-row *ngIf="this.error">
+        <ion-col padding margin class="login-failed">
+          Login failed:<br/>
+          Please check your Login information
+        </ion-col>
+      </ion-row>
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+
+              <ion-item>
+                <ion-label floating>Gruppennummer</ion-label>
+                <ion-select formControlName="groupNumber" cancelText="Abbrechen" okText="OK">
+                  <ion-option *ngFor="let group of groups" value="{{group.hash}}">{{group.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-input placeholder="Password"
+                           formControlName="password"
+                           type="password"></ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button class="submit-btn"
+                    full
+                    type="submit"
+                    [disabled]="!loginForm.valid">
+              Login
+            </button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-col>
+  </ion-grid>
+</ion-content>
