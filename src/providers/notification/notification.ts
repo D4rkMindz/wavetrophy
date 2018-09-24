@@ -28,8 +28,8 @@ export class NotificationProvider {
     const notifications = [];
     locations.forEach((location: ILocation, locationIndex) => {
         const event = location.events[location.events.length - 1];
-        // const triggerAt = event.start.subtract(notificationsAhead, "minutes").toDate();
-        const triggerAt = new Date(new Date().getTime() + (locationIndex * 1000));
+        const triggerAt = event.start.subtract(notificationsAhead, "minutes").toDate();
+        // const triggerAt = new Date(new Date().getTime() + (locationIndex * 1000));
         if (locations[locationIndex + 1] !== undefined) {
           return;
         }
@@ -72,7 +72,7 @@ export class NotificationProvider {
     this.notifications.schedule(notifications);
     this.notifications.on('OPEN_MAP').subscribe((notification) => {
       console.log(notification);
-      document.location.href = `geo:${notification.data.lat},${notification.data.lon}`;
+      document.location.href = `geo:0,0?q=${notification.data.lat},${notification.data.lon}`;
     });
   }
 
