@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ContactProvider } from "../../providers/contact/contact";
-import { IContact } from "../../models/interfaces/IContact";
-import { config } from "../../app/config";
-import { ActionSheetController, Platform } from "ionic-angular";
-import { ContactField, ContactName, Contacts } from "@ionic-native/contacts";
+import {Component} from '@angular/core';
+import {ContactProvider} from "../../providers/contact/contact";
+import {IContact} from "../../models/interfaces/IContact";
+import {config} from "../../app/config";
+import {ActionSheetController, AlertController, Platform} from "ionic-angular";
+import {ContactField, ContactName, Contacts} from "@ionic-native/contacts";
 
 /**
  * Generated class for the ContactsPage page.
@@ -23,6 +23,7 @@ export class ContactsPage {
 
   constructor(private contact: ContactProvider,
               private actionSheet: ActionSheetController,
+              private alert: AlertController,
               private nativeContacts: Contacts,
               private platform: Platform) {
     this.loadContacts();
@@ -93,10 +94,22 @@ export class ContactsPage {
         try {
           nativeContact.save()
             .then(() => {
+                const alert = this.alert.create({
+                  title: 'Kontakt gespeichert',
+                  message: `Kontakt ${contact.first_name} ${contact.last_name} in deinen Kontakten gespeichert`,
+                  buttons: ['OK'],
+                });
                 contactActionSheet.dismiss();
+                alert.present();
               },
               (e) => {
-                console.log('ERROR SAVING CONTACT: ', JSON.stringify(e));
+                const alert = this.alert.create({
+                  title: 'Fehler',
+                  message: `Kontakt ${contact.first_name} ${contact.last_name} speichern fehlgeschlagen. Bitte melde dich bei Björn Pfoster`,
+                  buttons: ['OK'],
+                });
+                contactActionSheet.dismiss();
+                alert.present();
               });
         } catch (e) {
           console.log('SAVING CONTACT ERROR: ', JSON.stringify(e))
