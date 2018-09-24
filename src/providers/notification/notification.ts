@@ -16,6 +16,7 @@ export class NotificationProvider {
   }
 
   public async registerForUpcomingEvents(locations: ILocation[]) {
+    this.notifications.cancelAll();
 
     const notificationsActive = await this.storage.get('notifications.active') || true;
     const notificationsAhead = await this.storage.get('notifications.ahead') || 15;

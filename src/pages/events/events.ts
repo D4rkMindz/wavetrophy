@@ -6,6 +6,7 @@ import { Storage } from "@ionic/storage";
 import { ILocation } from "../../models/interfaces/ILocation";
 import * as moment from "moment";
 import { DomSanitizer } from "@angular/platform-browser";
+import {NotificationProvider} from "../../providers/notification/notification";
 
 /**
  * Generated class for the EventsPage page.
@@ -21,7 +22,10 @@ export class EventsPage {
   events: Location[];
   isLoading = true;
 
-  constructor(private event: EventProvider, private storage: Storage, private sanitizer: DomSanitizer) {
+  constructor(private event: EventProvider,
+              private notifications: NotificationProvider,
+              private storage: Storage,
+              private sanitizer: DomSanitizer) {
   }
 
   geo(lat, lon) {
@@ -38,6 +42,7 @@ export class EventsPage {
     const events = await this.event.getAllLocations(wavetrophyHash, groupHash);
     this.isLoading = false;
     this.events = this.removePassedEvents(events);
+    this.notifications.registerForUpcomingEvents(this.events);
   }
 
   /**
