@@ -1,8 +1,0 @@
-{
-  "info": "The configuration can only be key => value. To create configuration groups, you need to create keys like 'group1.language.test.de' ",
-  "language":"de",
-  "notifications.active":true,
-  "notifications.color":"#7CB728",
-  "notifications.ahead": 15,
-  "server.baseurl": "https://api.wavetrophy.d4rkmindz.ch"
-}
